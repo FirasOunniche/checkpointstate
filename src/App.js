@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import Person from "./Person/Person";
+import Button from "react-bootstrap/Button";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    isToggleOn: false,
+  };
+
+  handleClick() {
+    //change the state
+
+    this.setState({
+      isToggleOn: !this.state.isToggleOn,
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Button onClick={() => this.handleClick()}>
+          {this.state.isToggleOn ? "ON" : "OFF"}
+        </Button>
+        <br />
+
+        {this.state.isToggleOn ? <Person /> : null}
+      </div>
+    );
+  }
 }
 
 export default App;
